@@ -1,5 +1,5 @@
 import pytest
-from project import get_user_name, teach_scale
+from project import get_user_name, teach_scale, introduce_scales
 
 
 # Test for get_user_name function
@@ -24,3 +24,14 @@ def test_teach_scale():
     # Test Case 2: Incorrect scale input
     result = teach_scale("InvalidScale")
     assert result == "Invalid scale name, please choose a valid scale."  # Adjust this based on your actual error handling
+
+def test_introduce_scales(monkeypatch):
+    # Test Case 1: Correct scale input
+    monkeypatch.setattr('builtins.input', lambda _: 'Tizita')
+    result = introduce_scales()
+    assert result == "You chose Tizita. Let's start learning!"
+
+    # Test Case 2: Incorrect scale input
+    monkeypatch.setattr('builtins.input', lambda _: 'InvalidScale')
+    result = introduce_scales()
+    assert result == "Invalid input. Please choose a valid scale."
