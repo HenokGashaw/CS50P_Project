@@ -44,8 +44,6 @@ def introduce_scales(name):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-
-
 # Main execution
 def main():
     user_name = get_user_name()
@@ -54,8 +52,9 @@ def main():
     teach_scale(selected_scale)
 
     take_quiz = input("Would you like to take a quiz on this scale? (yes/no): ").strip().lower()
-    if take_quiz == "yes":
-        quiz.administer_quiz(selected_scale)
+    while take_quiz not in ["yes", "no"]:
+        take_quiz = input("Please enter 'yes' or 'no': ").strip().lower()
+    quiz.administer_quiz(selected_scale)
 
 if __name__ == "__main__":
     main()
